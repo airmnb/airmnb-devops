@@ -29,9 +29,11 @@ if [ ! -L $currentdir ]; then
   firsttime=1
   echo -e "${GREEN}First time to setup the enviroment${NC}"
 
-  echo -e "${GREEN}Installing nodejs and typescript{NC}"
+  echo -e "${GREEN}Installing nodejs,typescript,yarn${NC}"
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-  apt-get install -y nodejs
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  apt-get install -y nodejs cmdtest yarn
   npm install typescript -g
 
   # 3.1 Clone devops
