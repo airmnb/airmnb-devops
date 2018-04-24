@@ -84,8 +84,9 @@ npm run build
 echo -e "${GREEN}Symlink $assetdir/app/web${NC} pointing $assetdir/web/build"
 ln -s $assetdir/web/build $assetdir/app/web
 
+readlink $currentdir
 echo -e "${GREEN}Symlink $currentdir pointing $assetdir${NC}"
-ln -sf $assetdir $currentdir
+ln -sfn $assetdir $currentdir
 
 # Restart Apache
 echo -e "${GREEN}Reloading apache${NC}"
