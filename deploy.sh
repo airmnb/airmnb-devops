@@ -85,9 +85,10 @@ echo -e "${GREEN}Symlink $assetdir/app/web${NC} pointing $assetdir/web/build"
 ln -s $assetdir/web/build $assetdir/app/web
 
 readlink $currentdir
-echo -e "${GREEN}Symlink $currentdir pointing $assetdir${NC}"
+echo -e "${GREEN}Symlink $currentdir${NC}"
+echo -e "${GREEN}Before${NC} `readlink $currentdir`"
 ln -sfn $assetdir $currentdir
-
+echo -e "${GREEN}After${NC} `readlink $currentdir`"
 # Restart Apache
 echo -e "${GREEN}Reloading apache${NC}"
 
