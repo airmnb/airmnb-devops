@@ -64,6 +64,8 @@ echo -e "${GREEN}Building airmnb-app in $assetdir${NC}"
 cd $assetdir
 git clone --progress -b master https://github.com/airmnb/airmnb-app.git app
 cd $assetdir/app
+virtualenv venv
+. venv/bin/activate
 pip install -r requirements.txt
 # python manage.py runserver &
 
@@ -85,4 +87,13 @@ ln -sf $assetdir $currentdir
 
 # Restart Apache
 echo -e "${GREEN}Reloading apache${NC}"
+
+tee -a $currentdir/app/application.wsgi << END
+import sys
+
+sys.path.append('/var/www/airmnb/current/app')
+
+from application import application as application
+END
+
 service apache2 restart
