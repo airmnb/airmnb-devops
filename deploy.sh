@@ -14,7 +14,7 @@ echo -e "${ORANGE}AMB_HOST_NAME = $AMB_HOST_NAME${NC}"
 
 # 1. Install middlewares
 echo -e "${GREEN}Installing middlewares${NC}"
-apt-get install -y python2.7 python-pip apache2 libapache2-mod-wsgi apache2-utils libexpat1 ssl-cert
+apt-get install -y python2.7 python-pip apache2 libapache2-mod-wsgi apache2-utils libexpat1 ssl-cert yarn
 
 # 2. Create folder
 assetdir=/var/www/airmnb/assets/assets_$(date +%Y%m%d_%H%M%S)
@@ -29,16 +29,21 @@ if [ ! -L $currentdir ]; then
   firsttime=1
   echo -e "${GREEN}First time to setup the enviroment${NC}"
 
+  echo -e "${GREEN}Installing nodejs and typescript{NC}"
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  apt-get install -y nodejs
+  npm install typescript -g
+
   # 3.1 Clone devops
   echo -e "${GREEN}Cloning devops repo${NC}"  
   cd $assetdir
   git clone --progress -b master https://github.com/airmnb/airmnb-devops.git devops
 
-  ln -s $assetdir/devops/certs/$AMB_HOST_NAME /var/www/airmnb/certs
-  echo -e "${GREEN}Creating symlink $currentdir pointing $assetdir${NC}"  
+  ln -fs $assetdir/devops/certs/$AMB_HOST_NAME /var/www/airmnb/certs
+  echo -e "${GREEN}Creating symlink $currentdir pointing $assetdir${NC}"
   ln -s "$assetdir" $currentdir
 
-  echo -e "${GREEN}Configuring Apache mods/confs/sites${NC}"  
+  echo -e "${GREEN}Configuring Apache mods/confs/sites${NC}"
   a2enmod cgi ssl rewrite
   # a2enconf wsgi
   # a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf
@@ -52,7 +57,7 @@ else
 fi
 
 # Setup app server
-echo -e "${GREEN}Cloning app repo to $assetdir${NC}"
+echo -e "${GREEN}Building airmnb-app in $assetdir${NC}"
 cd $assetdir
 git clone --progress -b master https://github.com/airmnb/airmnb-app.git app
 cd $assetdir/app
@@ -60,13 +65,20 @@ pip install -r requirements.txt
 # python manage.py runserver &
 
 # Setup web assets
-echo -e "${GREEN}Cloning web repo to $assetdir${NC}"
+echo -e "${GREEN}Building airmnb-web in $assetdir${NC}"
 cd $assetdir
 git clone --progress -b master https://github.com/airmnb/airmnb-web.git web
 cd $assetdir/web
 yarn install
+npm run build
 
 # Switch symlink
+echo -e "${GREEN}Symlink $assetdir/app/web${NC} pointing $assetdir/web/build"
+ln -s $assetdir/web/build $assetdir/app/web
+
+echo -e "${GREEN}Symlink $currentdir pointing $assetdir${NC}"
+ln -sf $assetdir $currentdir
 
 # Restart Apache
+echo -e "${GREEN}Reloading apache${NC}"
 service apache2 restart
