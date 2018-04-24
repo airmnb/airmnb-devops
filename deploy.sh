@@ -80,11 +80,11 @@ cd $assetdir/web
 npm install
 npm run build
 
-# Switch symlink
+# Marry app and web
 echo -e "${GREEN}Symlink $assetdir/app/web${NC} pointing $assetdir/web/build"
 ln -s $assetdir/web/build $assetdir/app/web
 
-readlink $currentdir
+# Switch symlink
 echo -e "${GREEN}Symlink $currentdir${NC}"
 echo -e "${GREEN}Before${NC} `readlink $currentdir`"
 ln -sfn $assetdir $currentdir
