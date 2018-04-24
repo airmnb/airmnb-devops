@@ -33,6 +33,7 @@ if [ ! -L $currentdir ]; then
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  apt-get update
   apt-get install -y nodejs cmdtest yarn
   npm install typescript -g
 
@@ -71,7 +72,8 @@ echo -e "${GREEN}Building airmnb-web in $assetdir${NC}"
 cd $assetdir
 git clone --progress -b master https://github.com/airmnb/airmnb-web.git web
 cd $assetdir/web
-yarn install
+# yarn install
+npm install
 npm run build
 
 # Switch symlink
