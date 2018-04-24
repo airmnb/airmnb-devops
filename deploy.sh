@@ -4,13 +4,13 @@ ORANGE='\033[0;33m'
 GREEN='\033[0;32m▣ '
 NC='\033[0m'
 
-
-echo -e "${ORANGE}AMB_HOST_NAME = $AMB_HOST_NAME${NC}"
 if [ -z "$AMB_HOST_NAME" ]
 then
-  echo "${RED}AMB_HOST_NAME must be set${NC}"
+  echo -e "${RED}AMB_HOST_NAME must be set${NC}"
   exit
 fi
+
+echo -e "${ORANGE}AMB_HOST_NAME = $AMB_HOST_NAME${NC}"
 
 # 1. Install middlewares
 echo -e "${GREEN}Installing middlewares${NC}"

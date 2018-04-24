@@ -10,5 +10,5 @@ sudo rm -f /etc/apache2/sites-available/airmnb.conf
 sudo rm /var/www/airmnb/current
 sudo rm /var/www/airmnb/certs
 
-sudo chmod +x deploy.sh
+sudo chmod +x *.sh
 sudo AMB_HOST_NAME=www.airmombaby.com -s ./deploy.sh
