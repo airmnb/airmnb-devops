@@ -14,8 +14,8 @@ echo -e "${ORANGE}AMB_HOST_NAME = $AMB_HOST_NAME${NC}"
 
 # 1. Install middlewares
 echo -e "${GREEN}Installing middlewares${NC}"
-apt-get install -y python2.7 python-pip apache2 libapache2-mod-wsgi apache2-utils libexpat1 ssl-cert yarn
-apt-get remove python-pip
+apt-get install -y python2.7 apache2 libapache2-mod-wsgi apache2-utils libexpat1 ssl-cert yarn
+# The pip installed by apt-get is buggy
 easy_install pip
 
 # 2. Create folder
