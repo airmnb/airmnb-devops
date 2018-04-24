@@ -6,7 +6,7 @@ NC='\033[0m'
 
 if [ -z "$AMB_HOST_NAME" ]
 then
-  echo -e "${RED}AMB_HOST_NAME must be set${NC}"
+  echo -e "${RED}AMB_HOST_NAME isn't specified (either 'www.airmnb.com' or 'www.airmombaby.com')${NC}"
   exit
 fi
 

@@ -12,3 +12,4 @@ sudo rm /var/www/airmnb/certs
 
 sudo chmod +x *.sh
 sudo AMB_HOST_NAME=www.airmombaby.com -s ./deploy.sh
+git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh
