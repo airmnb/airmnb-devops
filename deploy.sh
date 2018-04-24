@@ -6,11 +6,11 @@ NC='\033[0m'
 
 
 echo -e "${ORANGE}AMB_HOST_NAME = $AMB_HOST_NAME${NC}"
-# if [ -z "$AMB_HOST_NAME" ]
-# then
-#   echo "AMB_HOST_NAME must be set"
-#   exit
-# fi
+if [ -z "$AMB_HOST_NAME" ]
+then
+  echo "${RED}AMB_HOST_NAME must be set${NC}"
+  exit
+fi
 
 # 1. Install middlewares
 echo -e "${GREEN}Installing middlewares${NC}"
