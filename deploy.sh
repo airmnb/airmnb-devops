@@ -78,6 +78,7 @@ git clone --progress -b master https://github.com/airmnb/airmnb-web.git web
 cd $assetdir/web
 # yarn install
 npm install
+npm run test
 npm run build
 
 # Marry app and web
