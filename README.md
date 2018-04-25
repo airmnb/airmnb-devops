@@ -34,6 +34,7 @@ curl -X GET https://localhost/health-check
 ```
 AMB_HOST_NAME=www.airmombaby.com
 AMB_HOST_NAME=www.airmnb.com
+DATABASE_URI=postgres://qstqzkzu:wIRQ-yASKMaE7hEdABZCD7cSKUuC40DA@stampy.db.elephantsql.com:5432/qstqzkzu
 ```
 
 ### Related Directories
