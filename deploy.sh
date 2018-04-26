@@ -84,6 +84,8 @@ npm run build
 # Marry app and web
 echo -e "${GREEN}Marry app and web${NC}"
 ln -s $assetdir/web/build/index.html $assetdir/app/app/index.html
+ln -s $assetdir/web/build/favicon.ico $assetdir/app/app/favicon.ico
+ln -s $assetdir/web/build/manifest.json $assetdir/app/app/manifest.json
 ln -s $assetdir/web/build/service-worker.js $assetdir/app/app/service-worker.js
 ln -s $assetdir/web/build/static $assetdir/app/app/static
 
