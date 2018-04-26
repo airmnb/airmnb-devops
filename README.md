@@ -7,7 +7,7 @@ Navigate to some work directory (any place can be fine), and run below command.
 ```
 git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh
 
-sudo AMB_HOST_NAME=www.airmombaby.com -s ./deploy.sh
+sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
 
 curl -X GET https://localhost/health-check
 ```
@@ -32,8 +32,8 @@ curl -X GET https://localhost/health-check
 ### Env var
 
 ```
-AMB_HOST_NAME=www.airmombaby.com
-AMB_HOST_NAME=www.airmnb.com
+AMB_DOMAIN_NAME=www.airmombaby.com
+AMB_DOMAIN_NAME=www.airmnb.com
 DATABASE_URI=postgres://qstqzkzu:wIRQ-yASKMaE7hEdABZCD7cSKUuC40DA@stampy.db.elephantsql.com:5432/qstqzkzu
 ```
 
@@ -57,5 +57,5 @@ git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh
 
 sudo ./clear.sh
 
-sudo AMB_HOST_NAME=www.airmombaby.com -s ./deploy.sh
+sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
 ```

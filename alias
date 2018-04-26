@@ -1,1 +1,1 @@
-alias deploy="git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh && sudo AMB_HOST_NAME=www.airmombaby.com -s ./deploy.sh"
+alias deploy="git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh && sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh"

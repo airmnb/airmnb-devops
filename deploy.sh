@@ -4,13 +4,13 @@ ORANGE='\033[0;33m'
 GREEN='\033[0;32m▣ '
 NC='\033[0m'
 
-if [ -z "$AMB_HOST_NAME" ]
+if [ -z "$AMB_DOMAIN_NAME" ]
 then
-  echo -e "${RED}AMB_HOST_NAME isn't specified (either 'www.airmnb.com' or 'www.airmombaby.com')${NC}"
+  echo -e "${RED}AMB_DOMAIN_NAME isn't specified (either 'www.airmnb.com' or 'www.airmombaby.com')${NC}"
   exit
 fi
 
-echo -e "${ORANGE}AMB_HOST_NAME = $AMB_HOST_NAME${NC}"
+echo -e "${ORANGE}AMB_DOMAIN_NAME = $AMB_DOMAIN_NAME${NC}"
 
 # 1. Install middlewares
 echo -e "${GREEN}Installing middlewares${NC}"
@@ -44,9 +44,18 @@ if [ ! -L $currentdir ]; then
   cd $assetdir
   git clone --depth 1 --progress -b master https://github.com/airmnb/airmnb-devops.git devops
 
-  ln -fs $assetdir/devops/certs/$AMB_HOST_NAME /var/www/airmnb/certs
+  ln -fs $assetdir/devops/certs/$AMB_DOMAIN_NAME /var/www/airmnb/certs
   echo -e "${GREEN}Creating symlink $currentdir pointing $assetdir${NC}"
   ln -s "$assetdir" $currentdir
+
+  # Config apache enn var
+  grep "airmnb" envvars || tee -a envvars << END
+AMB_ROOT=/var/www/airmnb/current/app
+AMB_ENV=${AMB_ROOT}/env
+if [ -f "${AMB_APP_ENV}" ]; then
+    . "${AMB_APP_ENV}"
+fi
+END
 
   echo -e "${GREEN}Configuring Apache mods/confs/sites${NC}"
   a2enmod cgi ssl rewrite
