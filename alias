@@ -1,1 +1,16 @@
-alias deploy="git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh && sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh"
+#!/bin/bash
+
+APP_ROOT=${APP_ROOT:-/var/www/airmnb/current/app}
+LOG_ROOT=${LOG_ROOT:-/var/log/apache2}
+APACFDIR=${APACFDIR:-/etc/apache2/sites-available}
+
+alias app='cd ${APP_ROOT}'
+alias conf='cd ${APACFDIR}'
+alias log='cd ${LOG_ROOT}'
+alias reload='sudo service apache2 reload'
+alias al='cat ${LOG_ROOT}/access.log'
+alias el='cat ${LOG_ROOT}/error.log'
+alias tal='tail -f ${LOG_ROOT}/access.log'
+alias tel='tail -f ${LOG_ROOT}/error.log'
+alias deploy='git fetch && git checkout -B master -f origin/master && sudo chmod +x *.sh && sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh'
+alias amb='more ~/.bash_aliases'

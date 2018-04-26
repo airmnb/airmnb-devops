@@ -116,3 +116,5 @@ from application import application as application
 END
 
 service apache2 restart
+
+curl -X GET https://$AMB_DOMAIN_NAME/debug
