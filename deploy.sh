@@ -46,7 +46,7 @@ if [ ! -L $currentdir ]; then
 
   ln -fs $assetdir/devops/certs/$AMB_DOMAIN_NAME /var/www/airmnb/certs
   echo -e "${GREEN}Creating symlink $currentdir pointing $assetdir${NC}"
-  ln -s "$assetdir" $currentdir
+  ln "$assetdir" $currentdir
 
   # Config apache enn var
   grep "airmnb" /etc/apache2/envvars || tee -a /etc/apache2/envvars << END
