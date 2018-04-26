@@ -42,7 +42,7 @@ if [ ! -L $currentdir ]; then
   # 3.1 Clone devops
   echo -e "${GREEN}Cloning devops repo${NC}"  
   cd $assetdir
-  git clone --progress -b master https://github.com/airmnb/airmnb-devops.git devops
+  git clone --depth 1 --progress -b master https://github.com/airmnb/airmnb-devops.git devops
 
   ln -fs $assetdir/devops/certs/$AMB_HOST_NAME /var/www/airmnb/certs
   echo -e "${GREEN}Creating symlink $currentdir pointing $assetdir${NC}"
@@ -64,7 +64,7 @@ fi
 # Setup app server
 echo -e "${GREEN}Building airmnb-app in $assetdir${NC}"
 cd $assetdir
-git clone --progress -b master https://github.com/airmnb/airmnb-app.git app
+git clone --depth 1 --progress -b master https://github.com/airmnb/airmnb-app.git app
 cd $assetdir/app
 virtualenv venv
 . venv/bin/activate
@@ -74,7 +74,7 @@ pip install -r requirements.txt
 # Setup web assets
 echo -e "${GREEN}Building airmnb-web in $assetdir${NC}"
 cd $assetdir
-git clone --progress -b master https://github.com/airmnb/airmnb-web.git web
+git clone --depth 1 --progress -b master https://github.com/airmnb/airmnb-web.git web
 cd $assetdir/web
 # yarn install
 npm install
