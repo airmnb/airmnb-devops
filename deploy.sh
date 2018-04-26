@@ -49,7 +49,7 @@ if [ ! -L $currentdir ]; then
   ln -s "$assetdir" $currentdir
 
   # Config apache enn var
-  grep "airmnb" envvars || tee -a envvars << END
+  grep "airmnb" /etc/apache2/envvars || tee -a /etc/apache2/envvars << END
 AMB_ROOT=/var/www/airmnb/current/app
 AMB_ENV=${AMB_ROOT}/env
 if [ -f "${AMB_APP_ENV}" ]; then
