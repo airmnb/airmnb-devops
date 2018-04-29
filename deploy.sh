@@ -53,9 +53,9 @@ if [ ! -L $currentdir ]; then
   # Config apache enn var
   grep "airmnb" /etc/apache2/envvars || tee -a /etc/apache2/envvars << END
 AMB_ROOT=/var/www/airmnb/current/app
-AMB_APP_ENV=${AMB_ROOT}/env
-if [ -f "${AMB_APP_ENV}" ]; then
-    . "${AMB_APP_ENV}"
+AMB_APP_ENV=\${AMB_ROOT}/env
+if [ -f "\${AMB_APP_ENV}" ]; then
+    . "\${AMB_APP_ENV}"
 fi
 END
 
