@@ -14,6 +14,8 @@ echo -e "${ORANGE}AMB_DOMAIN_NAME = $AMB_DOMAIN_NAME${NC}"
 
 # 1. Install middlewares
 echo -e "${GREEN}Installing middlewares${NC}"
+add-apt-repository -y ppa:jonathonf/python-3.6
+apt update
 apt-get install -y python3.6 python3-pip apache2 libapache2-mod-wsgi-py3 apache2-utils libexpat1 ssl-cert yarn
 # The pip installed by apt-get is buggy
 # easy_install pip
@@ -51,7 +53,7 @@ if [ ! -L $currentdir ]; then
   # Config apache enn var
   grep "airmnb" /etc/apache2/envvars || tee -a /etc/apache2/envvars << END
 AMB_ROOT=/var/www/airmnb/current/app
-AMB_ENV=${AMB_ROOT}/env
+AMB_APP_ENV=${AMB_ROOT}/env
 if [ -f "${AMB_APP_ENV}" ]; then
     . "${AMB_APP_ENV}"
 fi
@@ -77,7 +79,7 @@ git clone --depth 1 --progress -b master https://github.com/airmnb/airmnb-app.gi
 cd $assetdir/app
 virtualenv venv
 . venv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 # python manage.py runserver &
 
 # Setup web assets
@@ -114,6 +116,8 @@ sys.path.append('/var/www/airmnb/current/app/venv/lib/python2.7')
 
 from application import application as application
 END
+
+cp ~/env $currentdir/env
 
 service apache2 restart
 
