@@ -117,7 +117,7 @@ sys.path.append('/var/www/airmnb/current/app/venv/lib/python2.7')
 from application import application as application
 END
 
-cp ~/env $currentdir/env
+cp ~/env $currentdir/app/env
 
 service apache2 restart
 
