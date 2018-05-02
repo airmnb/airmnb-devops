@@ -121,4 +121,4 @@ cp ~/env $currentdir/app/env
 
 service apache2 restart
 
-curl -X GET https://$AMB_DOMAIN_NAME/debug
+curl -X GET https://$AMB_DOMAIN_NAME/sys/debug

@@ -8,6 +8,7 @@ Navigate to some work directory (any place can be fine), and run below command.
 sudo git fetch && sudo git checkout -B master -f origin/master && sudo chmod +x *.sh
 
 sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
+# sudo AMB_DOMAIN_NAME=www.airmnb.com -s ./deploy.sh
 
 curl -X GET https://localhost/health-check
 ```
