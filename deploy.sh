@@ -79,7 +79,10 @@ git clone --depth 1 --progress -b master https://github.com/airmnb/airmnb-app.gi
 cd $assetdir/app
 virtualenv venv
 . venv/bin/activate
+. setenv.sh
 pip3 install -r requirements.txt
+python3 manage.py db upgrade
+
 # python manage.py runserver &
 
 # Setup web assets
