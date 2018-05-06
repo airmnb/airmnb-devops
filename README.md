@@ -10,7 +10,7 @@ sudo git fetch && sudo git checkout -B master -f origin/master && sudo chmod +x 
 sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
 # sudo AMB_DOMAIN_NAME=www.airmnb.com -s ./deploy.sh
 
-curl -X GET https://localhost/health-check
+curl -X GET https://${AMB_DOMAIN_NAME}/sys/health_check
 ```
 
 ## What does the script do
