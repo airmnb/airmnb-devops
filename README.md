@@ -17,7 +17,7 @@ Make sure:
 vi ~/env 
 ```
 
-Lanucn the deployment process.
+Execute below shell command to kick off the deployment process. We need to explicitly specify the `AMB_DOMAIN_NAME` (again) is to link the SSL cert file correctly. (Worth improving later)
 ```
 sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
 # sudo AMB_DOMAIN_NAME=www.airmnb.com -s ./deploy.sh
