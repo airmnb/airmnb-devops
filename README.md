@@ -6,7 +6,19 @@ This is a CD script to deploy Airmnb API server and Web server on Ubuntu.
 Navigate to some work directory (any place can be fine), and run below command.
 ```
 sudo git fetch && sudo git checkout -B master -f origin/master && sudo chmod +x *.sh
+```
 
+Create an `~/env` file and paste the secret environment variable configuration in prodduction. 
+Make sure:
+- `AMB_DOMAIN_NAME` is either `www.airmombaby.com` or `www.airmnb.com`;
+- `AMB_DATABASE_URI` is the correct database conneciton string to the prod database;
+- `AMB_RUNTIME_ENVIRONMENT` is constantly `production`.
+```
+vi ~/env 
+```
+
+Lanucn the deployment process.
+```
 sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
 # sudo AMB_DOMAIN_NAME=www.airmnb.com -s ./deploy.sh
 
