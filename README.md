@@ -72,3 +72,7 @@ sudo ./clear.sh
 
 sudo AMB_DOMAIN_NAME=www.airmombaby.com -s ./deploy.sh
 ```
+Or, you can define an alias like below. Everything logged in, just type `deploy` and it should kick off the deployment process.
+```
+alias deploy='cd ~/airmnb-devops; sudo AMB_DOMAIN_NAME=www.airmnb.com -s ./deploy.sh'
+```
